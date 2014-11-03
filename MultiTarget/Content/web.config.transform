@@ -1,0 +1,7 @@
+<configuration>
+    <system.data>        
+        <Samples>
+          <Sample value="Will be added to web.config"/>
+        </Samples>
+    </system.data>
+</configuration>

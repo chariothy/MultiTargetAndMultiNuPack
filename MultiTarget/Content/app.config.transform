@@ -1,0 +1,7 @@
+<configuration>
+    <system.data>        
+        <Samples>
+          <Sample value="Will be added to app.config"/>
+        </Samples>
+    </system.data>
+</configuration>
