@@ -10,42 +10,15 @@ All things I done is in MultiTarget.csproj:
 ```
 <OutputPath>bin\$(Configuration)\$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))\</OutputPath>
 ```
-There's nothing under bin\Debug or bin\Release but folders named after framework, such as NET35, NET40 ...
+There's nothing will be created bin\Debug or bin\Release root folder but subfolders named after framework, such as NET35, NET40 ...
 
 #### Add user defined PropertyGroups
 ```
 <!-- ################################# Begin of MultiTarget ############################################## -->
   <PropertyGroup>
-    <Framework Condition=" '$(Framework)' == '' ">$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", "_"))</Framework>
-  </PropertyGroup>
-  <PropertyGroup Condition=" $(Framework.Replace('NET', '').Replace('_', '.')) &lt; $(TargetFrameworkVersion.Replace('v', '')) and '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <TargetFrameworkVersion>$(Framework.Replace("NET", "v").Replace("_", "."))</TargetFrameworkVersion>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\$(Framework.Replace("_", ""))\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" $(Framework.Replace('NET', '').Replace('_', '.')) &lt; $(TargetFrameworkVersion.Replace('v', '')) and '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <TargetFrameworkVersion>$(Framework.Replace("NET", "v").Replace("_", "."))</TargetFrameworkVersion>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\$(Framework.Replace("_", ""))\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-    <PropertyGroup>
-    <!-- Adding a custom constant will auto-magically append a comma and space to the pre-built constants.    -->
-    <!-- Move the comma delimiter to the end of each constant and remove the trailing comma when we're done.  -->
     <FrameworkNumber>$(TargetFrameworkVersion.Replace("v", "").Replace(".", ""))</FrameworkNumber>
     <DefineConstants Condition=" !$(DefineConstants.Contains(';NET')) ">$(DefineConstants);$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</DefineConstants>
+    <Framework Condition=" '$(Framework)' == '' ">$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", "_"))</Framework>
     <DefineConstants Condition=" $(FrameworkNumber) &gt;= 20 ">$(DefineConstants);NET20_OR_ABOVE</DefineConstants>
     <DefineConstants Condition=" $(FrameworkNumber) &gt;= 35 ">$(DefineConstants);NET35_OR_ABOVE</DefineConstants>
     <DefineConstants Condition=" $(FrameworkNumber) &gt;= 40 ">$(DefineConstants);NET40_OR_ABOVE</DefineConstants>
@@ -55,53 +28,30 @@ There's nothing under bin\Debug or bin\Release but folders named after framework
   </PropertyGroup>
 <!-- ################################# End of MultiTarget ############################################## -->
 ```
-Two PropertyGroups for msbuild added above. The condition:
-```
-Condition=" $(Framework.Replace('NET', '').Replace('_', '.')) &lt; $(TargetFrameworkVersion.Replace('v', '')) and '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "
-```
-set there to avoid TargetFrameworkVersion value be changed by selecting other target framework in project property setting dialog box.
-```
-<TargetFrameworkVersion>$(Framework.Replace("NET", "v").Replace("_", "."))</TargetFrameworkVersion>
-```
 Serval DefineConstants have been added. So we can use these value in program to distinguish different target framework version:
 ```
-#if NET40_OR_GREATER
+#if NET35_OR_ABOVE
+using System.Linq;
+#endif
+
+#if NET40_OR_ABOVE
 using System.Threading.Tasks;
 #endif
 ```
-#### Add HintPath node for reference
+#### Modify HintPath for different framework version
 ```
 <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\$(Framework.Replace("_", ""))-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
 </Reference>
+```
+So log4net in net40 can be referenced by NET40_OR_ABOVE.
+
+#### Add RequiredTargetFramework
+```
 <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
 </Reference>
 ```
-log4net module is added by nuget so we need to alter its path by $(Framework.Replace("_", "")).
-
-<b>Notice! If the module's top target version is lower than yours, compiler will complain that it can not find the corresponding module, here is log4net. Maybe my next version will solve it well.</b>
-#### Add AfterBuild Targets
-```
-<Target Name="AfterBuild">
-    <!-- ################################# Begin of MultiTarget ############################################## -->
-    <!-- This just allows us to drop a note in the build output -->
-    <Message Text="Enter After Build TargetFrameworkVersion:$(TargetFrameworkVersion) Framework:$(Framework)" Importance="high" />
-    <!-- This is the key to the whole process. The second build happens here.  We set our 'Framework' variable allowing the above PropertyGroups to run more frameworks.  -->
-    <MSBuild Condition=" '$(Framework)' == 'NET4_5_2'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET4_5_1" RunEachTargetSeparately="true" />
-    <MSBuild Condition=" '$(Framework)' == 'NET4_5_1'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET4_5" RunEachTargetSeparately="true" />
-    <MSBuild Condition=" '$(Framework)' == 'NET4_5'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET4_0" RunEachTargetSeparately="true" />
-    <MSBuild Condition=" '$(Framework)' == 'NET4_0'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET3_5" RunEachTargetSeparately="true" />
-    <!--
-    <MSBuild Condition=" '$(Framework)' == 'NET3_5'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET2_0" RunEachTargetSeparately="true" />
-    -->
-    <!-- You could repeat the above node again here and target another framework if there was a property group that would evaluate to true-->
-    <!-- Just more logging -->
-    <Message Text="Exiting After Build TargetFrameworkVersion:$(TargetFrameworkVersion) Framework:$(Framework)" Importance="high" />
-    <!-- ################################# End of MultiTarget ############################################## -->
-</Target>
-```
-By doing this, Visual Studio can automatically build all target framework version less than current version. Say, if current version is NET 4.5, after press F6, NET4.0 and NET3.5 will be built automatically.
 
 ## MultiNuPack
 #### Modify nuget spec file
