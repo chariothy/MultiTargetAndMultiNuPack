@@ -17,5 +17,5 @@
         <file src="Content\**\*.*" target="Content" />
         <file src="Tools\**\*.*" target="Tools" />
         <file src="Resource\**\*.*" target="Resource" />
-    </files>
+   </files>
 </package>

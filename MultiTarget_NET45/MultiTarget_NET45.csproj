@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8EA06A09-B3D8-46EC-9207-6203A512476F}</ProjectGuid>
+    <ProjectGuid>{69CC58F9-B410-414E-B46C-945ECDC1B446}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nu.Vs</RootNamespace>
     <AssemblyName>Nu.Vs.MultiTarget</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))\</OutputPath>
+    <OutputPath>..\MultiTarget\bin\Debug\$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))\</OutputPath>
+    <OutputPath>..\MultiTarget\bin\Release\$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -56,16 +56,17 @@
   </PropertyGroup>
   <!-- ################################# End of MultiTarget ############################################## -->
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net20-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleClass.cs" />
+    <Compile Include="..\MultiTarget\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\MultiTarget\SampleClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

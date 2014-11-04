@@ -5,13 +5,13 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget", "MultiTarget\MultiTarget.csproj", "{7515D66B-7236-45E2-B89B-52206291CDD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET45", "MultiTarget\MultiTarget_NET45.csproj", "{69CC58F9-B410-414E-B46C-945ECDC1B446}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET45", "MultiTarget_NET45\MultiTarget_NET45.csproj", "{69CC58F9-B410-414E-B46C-945ECDC1B446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET40", "MultiTarget\MultiTarget_NET40.csproj", "{61C94BD5-7CD9-4033-94C5-D6578ADF3178}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET40", "MultiTarget_NET40\MultiTarget_NET40.csproj", "{61C94BD5-7CD9-4033-94C5-D6578ADF3178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET35", "MultiTarget\MultiTarget_NET35.csproj", "{993775A9-8EEB-4AAC-A259-7E9E73015169}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET35", "MultiTarget_NET35\MultiTarget_NET35.csproj", "{993775A9-8EEB-4AAC-A259-7E9E73015169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET20", "MultiTarget\MultiTarget_NET20.csproj", "{8EA06A09-B3D8-46EC-9207-6203A512476F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET20", "MultiTarget_NET20\MultiTarget_NET20.csproj", "{8EA06A09-B3D8-46EC-9207-6203A512476F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
