@@ -69,12 +69,10 @@
     <!-- Adding a custom constant will auto-magically append a comma and space to the pre-built constants.    -->
     <!-- Move the comma delimiter to the end of each constant and remove the trailing comma when we're done.  -->
     <DefineConstants Condition=" !$(DefineConstants.Contains(';NET')) ">$(DefineConstants);$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 2.0 ">$(DefineConstants);NET20_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 3.5 ">$(DefineConstants);NET35_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.0 ">$(DefineConstants);NET40_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5 ">$(DefineConstants);NET45_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5.1 ">$(DefineConstants);NET451_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5.2 ">$(DefineConstants);NET452_OR_GREATER</DefineConstants>
+    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 2.0 ">$(DefineConstants);NET20_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 3.5 ">$(DefineConstants);NET35_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.0 ">$(DefineConstants);NET40_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5 ">$(DefineConstants);NET45_OR_ABOVE</DefineConstants>
   </PropertyGroup>
   <!-- ################################# End of MultiTarget ############################################## -->
   <ItemGroup>
