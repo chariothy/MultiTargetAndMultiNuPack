@@ -41,16 +41,17 @@ There's nothing under bin\Debug or bin\Release but folders named after framework
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
+    <PropertyGroup>
     <!-- Adding a custom constant will auto-magically append a comma and space to the pre-built constants.    -->
     <!-- Move the comma delimiter to the end of each constant and remove the trailing comma when we're done.  -->
+    <FrameworkNumber>$(TargetFrameworkVersion.Replace("v", "").Replace(".", ""))</FrameworkNumber>
     <DefineConstants Condition=" !$(DefineConstants.Contains(';NET')) ">$(DefineConstants);$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 2.0 ">$(DefineConstants);NET20_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 3.5 ">$(DefineConstants);NET35_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.0 ">$(DefineConstants);NET40_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5 ">$(DefineConstants);NET45_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5.1 ">$(DefineConstants);NET451_OR_GREATER</DefineConstants>
-    <DefineConstants Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5.2 ">$(DefineConstants);NET452_OR_GREATER</DefineConstants>
+    <DefineConstants Condition=" $(FrameworkNumber) &gt;= 20 ">$(DefineConstants);NET20_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(FrameworkNumber) &gt;= 35 ">$(DefineConstants);NET35_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(FrameworkNumber) &gt;= 40 ">$(DefineConstants);NET40_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(FrameworkNumber) &gt;= 45 ">$(DefineConstants);NET45_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(FrameworkNumber) &gt;= 451 ">$(DefineConstants);NET451_OR_ABOVE</DefineConstants>
+    <DefineConstants Condition=" $(FrameworkNumber) &gt;= 452 ">$(DefineConstants);NET452_OR_ABOVE</DefineConstants>
   </PropertyGroup>
 <!-- ################################# End of MultiTarget ############################################## -->
 ```
@@ -68,6 +69,18 @@ Serval DefineConstants have been added. So we can use these value in program to 
 using System.Threading.Tasks;
 #endif
 ```
+#### Add HintPath node for reference
+```
+<Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\$(Framework.Replace("_", ""))-full\log4net.dll</HintPath>
+</Reference>
+<Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+</Reference>
+```
+log4net module is added by nuget so we need to alter its path by $(Framework.Replace("_", "")).
+
+<b>Notice! If the module's top target version is lower than yours, compiler will complain that it can not find the corresponding module, here is log4net. Maybe my next version will solve it well.</b>
 #### Add AfterBuild Targets
 ```
 <Target Name="AfterBuild">
