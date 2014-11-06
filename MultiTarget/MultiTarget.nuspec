@@ -12,7 +12,7 @@
     <copyright>Copyright 2014</copyright>
   </metadata>
   <files>
-        <file src="bin\Release\**\*.*" target="lib" />
+        <file src="bin\Release\**\Nu.Vs.MultiTarget.dll" target="lib" />
         <file src="NativeBinaries\**\*.*" target="NativeBinaries" />
         <file src="Content\**\*.*" target="Content" />
         <file src="Tools\**\*.*" target="Tools" />
