@@ -13,7 +13,21 @@ using System.Threading.Tasks;
 
 namespace Nu.Vs
 {
-    class SampleClass
+    public class SampleClass
     {
+        public static string GetMessage()
+        {
+            string ver = string.Empty;
+#if NET35
+            ver = "net 3.5";
+#elif NET40
+            ver = "net 4.0";
+#elif NET45
+            ver = "net 4.5";
+#elif NET451
+            ver = "net 4.5.1";
+#endif
+            return "MultiTarget of version " + ver;
+        }
     }
 }

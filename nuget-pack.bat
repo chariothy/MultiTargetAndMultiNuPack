@@ -1,2 +1,2 @@
-nuget pack MultiTarget\MultiTarget.csproj -Prop Configuration=Release -Symbols
+nuget pack MultiTarget\MultiTarget.csproj -Prop Configuration=Release
 pause

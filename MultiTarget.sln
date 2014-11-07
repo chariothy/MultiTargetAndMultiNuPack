@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET35", "MultiT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget_NET20", "MultiTarget_NET20\MultiTarget_NET20.csproj", "{8EA06A09-B3D8-46EC-9207-6203A512476F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMultiTarget", "TestMultiTarget\TestMultiTarget.csproj", "{4DA2DF23-CC29-4608-83B1-6BB15B220617}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,12 @@ Global
 		{8EA06A09-B3D8-46EC-9207-6203A512476F}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
 		{8EA06A09-B3D8-46EC-9207-6203A512476F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EA06A09-B3D8-46EC-9207-6203A512476F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA2DF23-CC29-4608-83B1-6BB15B220617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA2DF23-CC29-4608-83B1-6BB15B220617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA2DF23-CC29-4608-83B1-6BB15B220617}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{4DA2DF23-CC29-4608-83B1-6BB15B220617}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{4DA2DF23-CC29-4608-83B1-6BB15B220617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA2DF23-CC29-4608-83B1-6BB15B220617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
