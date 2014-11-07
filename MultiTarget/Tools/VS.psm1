@@ -82,8 +82,8 @@ function Get-PostBuildCommand ($installPath) {
     $ResourceDir = Join-Path $path "Resource"
 
     return "
-    xcopy /s /y `"$NativeAssembliesDir`" `"`$(TargetDir)`"
-    xcopy /s /y `"$ResourceDir`" `"`$(TargetDir)`""
+    if exist `"$NativeAssembliesDir`" xcopy /s /y `"$NativeAssembliesDir`" `"`$(TargetDir)`"
+    if exist `"$ResourceDir`" xcopy /s /y `"$ResourceDir`" `"`$(TargetDir)`""
 }
 
 function Get-ProjectRoot($project) {
