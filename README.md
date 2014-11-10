@@ -1,6 +1,6 @@
-MultiTargetAndMultiNuPack
+MultiTargetFrameworkDemo
 ============
-Just a demonstrantion of how to build C# project targeting multi-framework and then pack them all within a nuget package.
+A demonstrantion of how to build Visual Studio projects targeting multi-framework and then pack them all within a nuget package.
 
 ## MultiTarget
 
