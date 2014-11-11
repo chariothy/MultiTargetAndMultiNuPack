@@ -10,15 +10,8 @@
     <description>$description$</description>
     <releaseNotes>Init package.</releaseNotes>
     <copyright>Copyright 2014</copyright>
-  <dependencies>
-      <dependency id="Nu.Vs.BaseLib"/>
-  </dependencies>
   </metadata>
   <files>
-        <file src="bin\Release\**\Nu.Vs.MultiTarget.dll" target="lib" />
-        <file src="NativeBinaries\**\*.*" target="NativeBinaries" />
-        <file src="Content\**\*.*" target="Content" />
-        <file src="Tools\**\*.*" target="Tools" />
-        <file src="Resource\**\*.*" target="Resource" />
+        <file src="bin\Release\**\Nu.Vs.BaseLib.dll" target="lib" />
   </files>
 </package>
