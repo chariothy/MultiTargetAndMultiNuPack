@@ -11,7 +11,7 @@
     <releaseNotes>Init package.</releaseNotes>
     <copyright>Copyright 2014</copyright>
   <dependencies>
-      <dependency id="BaseLib" version="1.0.0"/>
+      <dependency id="BaseLib" version="1.0.5"/>
   </dependencies>
   </metadata>
 
