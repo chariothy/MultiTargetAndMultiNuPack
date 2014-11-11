@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Nu.Vs.MultiTarget;
-
-namespace Nu.Vs.MultiTarget.Test
+namespace Nu.Vs.Demo.Test
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(SampleClass.GetMessage());
+            Console.WriteLine(new SampleClass().GetMessage());
             Console.ReadKey();
         }
     }

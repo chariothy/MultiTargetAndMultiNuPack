@@ -10,7 +10,11 @@
     <description>$description$</description>
     <releaseNotes>Init package.</releaseNotes>
     <copyright>Copyright 2014</copyright>
+  <dependencies>
+      <dependency id="BaseLib" version="1.0.0"/>
+  </dependencies>
   </metadata>
+
   <files>
         <file src="bin\Release\**\Nu.Vs.MultiTarget.dll" target="lib" />
         <file src="NativeBinaries\**\*.*" target="NativeBinaries" />

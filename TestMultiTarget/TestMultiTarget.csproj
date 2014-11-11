@@ -7,10 +7,11 @@
     <ProjectGuid>{4DA2DF23-CC29-4608-83B1-6BB15B220617}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nu.Vs.MultiTarget.Test</RootNamespace>
+    <RootNamespace>Nu.Vs.Demo</RootNamespace>
     <AssemblyName>TestMultiTarget</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -41,13 +42,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Nu.Vs.MultiTarget, Version=1.0.5424.27786, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nu.Vs.MultiTarget.1.0.4\lib\NET45\Nu.Vs.MultiTarget.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,13 +56,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseLib\BaseLib.csproj">
+      <Project>{1c9a6326-a38f-4c52-bd55-e2436c8a3b07}</Project>
+      <Name>BaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MultiTarget\MultiTarget.csproj">
+      <Project>{7515d66b-7236-45e2-b89b-52206291cdd5}</Project>
+      <Name>MultiTarget</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-    if exist "$(SolutionDir)packages\Nu.Vs.MultiTarget.1.0.4\NativeBinaries" xcopy /s /y "$(SolutionDir)packages\Nu.Vs.MultiTarget.1.0.4\NativeBinaries" "$(TargetDir)"
-    if exist "$(SolutionDir)packages\Nu.Vs.MultiTarget.1.0.4\Resource" xcopy /s /y "$(SolutionDir)packages\Nu.Vs.MultiTarget.1.0.4\Resource" "$(TargetDir)"</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

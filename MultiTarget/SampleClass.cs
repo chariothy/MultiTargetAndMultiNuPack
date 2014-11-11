@@ -11,23 +11,13 @@ using System.Text;
 using System.Threading.Tasks;
 #endif
 
-namespace Nu.Vs
+namespace Nu.Vs.Demo
 {
-    public class SampleClass
+    public class SampleClass : BaseClass
     {
-        public static string GetMessage()
+        public string GetMessage()
         {
-            string ver = string.Empty;
-#if NET35
-            ver = "net 3.5";
-#elif NET40
-            ver = "net 4.0";
-#elif NET45
-            ver = "net 4.5";
-#elif NET451
-            ver = "net 4.5.1";
-#endif
-            return "MultiTarget of version " + ver;
+            return "MultiTarget extends BaseMessage " + BaseMessage;
         }
     }
 }

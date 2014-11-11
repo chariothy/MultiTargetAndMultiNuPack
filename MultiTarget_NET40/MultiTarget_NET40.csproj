@@ -7,7 +7,7 @@
     <ProjectGuid>{61C94BD5-7CD9-4033-94C5-D6578ADF3178}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nu.Vs</RootNamespace>
+    <RootNamespace>Nu.Vs.Demo</RootNamespace>
     <AssemblyName>Nu.Vs.MultiTarget</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -70,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseLib_NET40\BaseLib_NET40.csproj">
+      <Project>{a6348b67-642a-4c55-b8fa-ef95c24669f6}</Project>
+      <Name>BaseLib_NET40</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
